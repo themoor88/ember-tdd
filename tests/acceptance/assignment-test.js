@@ -22,3 +22,13 @@ test('unassigned items are grouped together', function(assert) {
     assert.equal(project.text(), "first");
   });
 });
+
+test('assigned items are grouped together', function(assert) {
+  visit('/');
+  andThen(function() {
+    var assigned = find(".assigned .cards");
+    assert.equal(assigned.length, 1);
+    var project = find(".assigned .cards:eq(0) .todo_project");
+    assert.equal(project.text(), "last");
+  });
+});
