@@ -13,10 +13,12 @@ module('Acceptance | assignment', {
   }
 });
 
-test('visiting /assignment', function(assert) {
+test('unassigned items are grouped together', function(assert) {
   visit('/');
   andThen(function() {
-    var unassigned = find("table.unassigned tr.cards");
+    var unassigned = find(".unassigned .cards");
     assert.equal(unassigned.length, 3);
+    var project = find(".unassigned .cards:eq(0) .todo_project");
+    assert.equal(project.text(), "first");
   });
 });
